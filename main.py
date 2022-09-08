@@ -25,9 +25,10 @@ screen.onkeypress(key='Down', fun=r_paddle.go_down)
 game_is_on = True
 
 while game_is_on:
-    screen.update()
-    ball.move_ball()
     sleep(.001)
+    screen.update()
+
+    ball.move_ball()
 
     # Detect collision with wall
     if ball.ycor() > 340 or ball.ycor() < -340:
