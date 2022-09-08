@@ -1,6 +1,7 @@
 from turtle import Screen
 from paddle import Paddle
 from pong_ball import Ball
+from scoreboard import ScoreBoard
 from time import sleep
 
 screen = Screen()
@@ -15,6 +16,7 @@ r_paddle = Paddle(position=(590, 0))
 ball = Ball()
 # ball.speed(1)
 
+score_board = ScoreBoard()
 
 screen.listen()
 screen.onkeypress(key='w', fun=l_paddle.go_up)
@@ -22,9 +24,7 @@ screen.onkeypress(key='s', fun=l_paddle.go_down)
 screen.onkeypress(key='Up', fun=r_paddle.go_up)
 screen.onkeypress(key='Down', fun=r_paddle.go_down)
 
-game_is_on = True
-
-while game_is_on:
+while True:
     sleep(.001)
     screen.update()
 
@@ -44,11 +44,23 @@ while game_is_on:
     # Detect R paddle misses
     if ball.xcor() > 600:
         ball.reset_ball_position()
-        # scoreboard.l_point()
+        score_board.increase_l_score()
 
     # Detect L paddle misses:
     if ball.xcor() < -600:
         ball.reset_ball_position()
-        # scoreboard.r_point()
+        score_board.increase_r_score()
+
+    if score_board.l_score == 10:
+        score_board.clear()
+        score_board.home()
+        score_board.write('L is the winner!', align='center', font=('Times New Roman', 40, 'normal'))
+        break
+
+    if score_board.r_score == 10:
+        score_board.clear()
+        score_board.home()
+        score_board.write('R is the winner!', align='center', font=('Times New Roman', 40, 'normal'))
+        break
 
 screen.exitonclick()
