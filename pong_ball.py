@@ -1,12 +1,13 @@
 from turtle import Turtle
 
+
 class Ball(Turtle):
     def __init__(self):
         super().__init__('circle')
         self.color('red')
         self.penup()
-        self.x_move = 3
-        self.y_move = 3
+        self.x_move = 5
+        self.y_move = 5
 
     def move_ball(self):
         new_x = self.xcor() + self.x_move
