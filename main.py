@@ -3,17 +3,18 @@ from paddle import Paddle
 from pong_ball import Ball
 from time import sleep
 
-
 screen = Screen()
 screen.bgcolor('white')
 screen.setup(width=1280, height=720)
 screen.title('Pong Game')
-
-ball = Ball()
-# ball.speed(1)
+# Turn off tracer
+screen.tracer(0)
 
 l_paddle = Paddle(position=(-590, 0))
 r_paddle = Paddle(position=(590, 0))
+ball = Ball()
+# ball.speed(1)
+
 
 screen.listen()
 screen.onkeypress(key='w', fun=l_paddle.go_up)
@@ -22,10 +23,6 @@ screen.onkeypress(key='Up', fun=r_paddle.go_up)
 screen.onkeypress(key='Down', fun=r_paddle.go_down)
 
 game_is_on = True
-
-# Turn off tracer
-screen.tracer(0)
-
 
 while game_is_on:
     screen.update()
